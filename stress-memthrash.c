@@ -225,20 +225,18 @@ static void OPTIMIZE3 stress_memthrash_memset64(
 	(void)context;
 
 #if defined(HAVE_NT_STORE64)
-	if (stress_cpu_x86_has_sse2()) {
-		while (LIKELY(ptr < end)) {
-			stress_nt_store64(ptr + 0, val);
-			stress_nt_store64(ptr + 1, val);
-			stress_nt_store64(ptr + 2, val);
-			stress_nt_store64(ptr + 3, val);
-			stress_nt_store64(ptr + 4, val);
-			stress_nt_store64(ptr + 5, val);
-			stress_nt_store64(ptr + 6, val);
-			stress_nt_store64(ptr + 7, val);
-			ptr += 8;
-		}
-		return;
+	while (LIKELY(ptr < end)) {
+		stress_nt_store64(ptr + 0, val);
+		stress_nt_store64(ptr + 1, val);
+		stress_nt_store64(ptr + 2, val);
+		stress_nt_store64(ptr + 3, val);
+		stress_nt_store64(ptr + 4, val);
+		stress_nt_store64(ptr + 5, val);
+		stress_nt_store64(ptr + 6, val);
+		stress_nt_store64(ptr + 7, val);
+		ptr += 8;
 	}
+	return;
 #endif
 	/* normal temporal stores, non-SSE fallback */
 

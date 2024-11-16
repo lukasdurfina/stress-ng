@@ -696,10 +696,7 @@ static uint64_t OPTIMIZE3 stress_memrate_write_nt##size(	\
 	const type *end ALIGNED(4096) = (type *)context->end;	\
 	register type v, *ptr;					\
 								\
-	if (!stress_cpu_x86_has_sse2()) {			\
-		*valid = false;					\
-		return 0;					\
-	}							\
+	*valid = false;					\
 								\
 	{							\
 		type vaa;					\
@@ -749,10 +746,7 @@ static uint64_t OPTIMIZE3 stress_memrate_write_nt_rate##size(	\
 		(MB * (double)context->memrate_wr_mbs);		\
 	register type v, *ptr;					\
 								\
-	if (!stress_cpu_x86_has_sse2()) {			\
-		*valid = false;					\
-		return 0;					\
-	}							\
+	*valid = false;					\
 								\
 	{							\
 		type vaa;					\

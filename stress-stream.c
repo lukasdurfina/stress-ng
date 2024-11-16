@@ -782,9 +782,6 @@ static int stress_stream(stress_args_t *args)
 	uint32_t init_counter, init_counter_max;
 	bool guess = false;
 	bool stream_mlock = false;
-#if defined(HAVE_NT_STORE_DOUBLE)
-	const bool has_sse2 = stress_cpu_x86_has_sse2();
-#endif
 	double rd_bytes = 0.0, wr_bytes = 0.0;
 	const bool verify = !!(g_opt_flags & OPT_FLAGS_VERIFY);
 
@@ -922,15 +919,13 @@ case_stream_index_1:
 		case 0:
 		default:
 #if defined(HAVE_NT_STORE_DOUBLE)
-			if (has_sse2) {
-				t1 = stress_time_now();
-				stress_stream_copy_index0_nt(c, a, n, &rd_bytes, &wr_bytes, &fp_ops);
-				stress_stream_scale_index0_nt(b, c, q, n, &rd_bytes, &wr_bytes, &fp_ops);
-				stress_stream_add_index0_nt(c, b, a, n,  &rd_bytes, &wr_bytes, &fp_ops);
-				stress_stream_triad_index0_nt(a, b, c, q, n, &rd_bytes, &wr_bytes, &fp_ops);
-				t2 = stress_time_now();
-				break;
-			}
+			t1 = stress_time_now();
+			stress_stream_copy_index0_nt(c, a, n, &rd_bytes, &wr_bytes, &fp_ops);
+			stress_stream_scale_index0_nt(b, c, q, n, &rd_bytes, &wr_bytes, &fp_ops);
+			stress_stream_add_index0_nt(c, b, a, n,  &rd_bytes, &wr_bytes, &fp_ops);
+			stress_stream_triad_index0_nt(a, b, c, q, n, &rd_bytes, &wr_bytes, &fp_ops);
+			t2 = stress_time_now();
+			break;
 #endif
 			t1 = stress_time_now();
 			stress_stream_copy_index0(c, a, n, &rd_bytes, &wr_bytes, &fp_ops);

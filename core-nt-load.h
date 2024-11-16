@@ -25,7 +25,6 @@
  *  128 bit non-temporal loads
  */
 #if defined(HAVE_INT128_T) &&				\
-    defined(HAVE_BUILTIN_SUPPORTS) &&			\
     defined(HAVE_BUILTIN_NONTEMPORAL_LOAD)
 /* Clang non-temporal loads */
 static inline __uint128_t ALWAYS_INLINE OPTIMIZE3 stress_nt_load128(__uint128_t *addr)
@@ -39,8 +38,7 @@ static inline __uint128_t ALWAYS_INLINE OPTIMIZE3 stress_nt_load128(__uint128_t 
 /*
  *  64 bit non-temporal loads
  */
-#if defined(HAVE_BUILTIN_SUPPORTS) &&	\
-    defined(HAVE_BUILTIN_NONTEMPORAL_LOAD)
+#if defined(HAVE_BUILTIN_NONTEMPORAL_LOAD)
 /* Clang non-temporal load */
 static inline uint64_t ALWAYS_INLINE OPTIMIZE3 stress_nt_load64(uint64_t *addr)
 {
@@ -52,8 +50,7 @@ static inline uint64_t ALWAYS_INLINE OPTIMIZE3 stress_nt_load64(uint64_t *addr)
 /*
  *  32 bit non-temporal loads
  */
-#if defined(HAVE_BUILTIN_SUPPORTS) &&			\
-    defined(HAVE_BUILTIN_NONTEMPORAL_LOAD)
+#if defined(HAVE_BUILTIN_NONTEMPORAL_LOAD)
 /* Clang non-temporal load */
 static inline uint32_t ALWAYS_INLINE OPTIMIZE3 stress_nt_load32(uint32_t *addr)
 {
@@ -65,8 +62,7 @@ static inline uint32_t ALWAYS_INLINE OPTIMIZE3 stress_nt_load32(uint32_t *addr)
 /*
  *  double precision float non-temporal loads
  */
-#if defined(HAVE_BUILTIN_SUPPORTS) &&			\
-    defined(HAVE_BUILTIN_NONTEMPORAL_LOAD)
+#if defined(HAVE_BUILTIN_NONTEMPORAL_LOAD)
 /* Clang non-temporal load */
 static inline double ALWAYS_INLINE OPTIMIZE3 stress_nt_load_double(double *addr)
 {

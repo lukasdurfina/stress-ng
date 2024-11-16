@@ -2084,61 +2084,58 @@ static size_t TARGET_CLONES stress_vm_write64nt(
 	stress_args_t *args,
 	const uint64_t max_ops)
 {
-	if (stress_cpu_x86_has_sse2()) {
-		static uint64_t val;
-		register uint64_t *ptr = (uint64_t *)buf;
-		register const uint64_t v = val;
-		register size_t i = 0;
-		register const size_t n = sz / (sizeof(*ptr) * 32);
+	static uint64_t val;
+	register uint64_t *ptr = (uint64_t *)buf;
+	register const uint64_t v = val;
+	register size_t i = 0;
+	register const size_t n = sz / (sizeof(*ptr) * 32);
 
-		(void)buf_end;
+	(void)buf_end;
 
-		while (i < n) {
-			stress_nt_store64(&ptr[0x00], v);
-			stress_nt_store64(&ptr[0x01], v);
-			stress_nt_store64(&ptr[0x02], v);
-			stress_nt_store64(&ptr[0x03], v);
-			stress_nt_store64(&ptr[0x04], v);
-			stress_nt_store64(&ptr[0x05], v);
-			stress_nt_store64(&ptr[0x06], v);
-			stress_nt_store64(&ptr[0x07], v);
+	while (i < n) {
+		stress_nt_store64(&ptr[0x00], v);
+		stress_nt_store64(&ptr[0x01], v);
+		stress_nt_store64(&ptr[0x02], v);
+		stress_nt_store64(&ptr[0x03], v);
+		stress_nt_store64(&ptr[0x04], v);
+		stress_nt_store64(&ptr[0x05], v);
+		stress_nt_store64(&ptr[0x06], v);
+		stress_nt_store64(&ptr[0x07], v);
 
-			stress_nt_store64(&ptr[0x08], v);
-			stress_nt_store64(&ptr[0x09], v);
-			stress_nt_store64(&ptr[0x0a], v);
-			stress_nt_store64(&ptr[0x0b], v);
-			stress_nt_store64(&ptr[0x0c], v);
-			stress_nt_store64(&ptr[0x0d], v);
-			stress_nt_store64(&ptr[0x0e], v);
-			stress_nt_store64(&ptr[0x0f], v);
+		stress_nt_store64(&ptr[0x08], v);
+		stress_nt_store64(&ptr[0x09], v);
+		stress_nt_store64(&ptr[0x0a], v);
+		stress_nt_store64(&ptr[0x0b], v);
+		stress_nt_store64(&ptr[0x0c], v);
+		stress_nt_store64(&ptr[0x0d], v);
+		stress_nt_store64(&ptr[0x0e], v);
+		stress_nt_store64(&ptr[0x0f], v);
 
-			stress_nt_store64(&ptr[0x10], v);
-			stress_nt_store64(&ptr[0x11], v);
-			stress_nt_store64(&ptr[0x12], v);
-			stress_nt_store64(&ptr[0x13], v);
-			stress_nt_store64(&ptr[0x14], v);
-			stress_nt_store64(&ptr[0x15], v);
-			stress_nt_store64(&ptr[0x16], v);
-			stress_nt_store64(&ptr[0x17], v);
+		stress_nt_store64(&ptr[0x10], v);
+		stress_nt_store64(&ptr[0x11], v);
+		stress_nt_store64(&ptr[0x12], v);
+		stress_nt_store64(&ptr[0x13], v);
+		stress_nt_store64(&ptr[0x14], v);
+		stress_nt_store64(&ptr[0x15], v);
+		stress_nt_store64(&ptr[0x16], v);
+		stress_nt_store64(&ptr[0x17], v);
 
-			stress_nt_store64(&ptr[0x18], v);
-			stress_nt_store64(&ptr[0x19], v);
-			stress_nt_store64(&ptr[0x1a], v);
-			stress_nt_store64(&ptr[0x1b], v);
-			stress_nt_store64(&ptr[0x1c], v);
-			stress_nt_store64(&ptr[0x1d], v);
-			stress_nt_store64(&ptr[0x1e], v);
-			stress_nt_store64(&ptr[0x1f], v);
+		stress_nt_store64(&ptr[0x18], v);
+		stress_nt_store64(&ptr[0x19], v);
+		stress_nt_store64(&ptr[0x1a], v);
+		stress_nt_store64(&ptr[0x1b], v);
+		stress_nt_store64(&ptr[0x1c], v);
+		stress_nt_store64(&ptr[0x1d], v);
+		stress_nt_store64(&ptr[0x1e], v);
+		stress_nt_store64(&ptr[0x1f], v);
 
-			i++;
-			if (UNLIKELY(!stress_continue_flag() || (max_ops && (i >= max_ops))))
-				break;
-		}
-		stress_bogo_add(args, i);
-		val++;
-		return 0;
+		i++;
+		if (UNLIKELY(!stress_continue_flag() || (max_ops && (i >= max_ops))))
+			break;
 	}
-	return stress_vm_write64(buf, buf_end, sz, args, max_ops);
+	stress_bogo_add(args, i);
+	val++;
+	return 0;
 }
 #endif
 

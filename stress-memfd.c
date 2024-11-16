@@ -212,8 +212,7 @@ static int stress_memfd_child(stress_args_t *args, void *context)
 	bool memfd_mlock = false;
 	bool memfd_zap_pte = false;
 #if defined(HAVE_NT_STORE64)
-	void (*stress_memfd_fill_pages)(uint64_t val, void *ptr, const size_t size) =
-		stress_cpu_x86_has_sse2() ? stress_memfd_fill_pages_nt_store : stress_memfd_fill_pages_generic;
+	void (*stress_memfd_fill_pages)(uint64_t val, void *ptr, const size_t size) = stress_memfd_fill_pages_nt_store;
 #else
 	void (*stress_memfd_fill_pages)(uint64_t val, void *ptr, const size_t size) = stress_memfd_fill_pages_generic;
 #endif

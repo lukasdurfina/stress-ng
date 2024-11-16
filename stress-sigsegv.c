@@ -266,10 +266,6 @@ static int stress_sigsegv(stress_args_t *args)
 #if defined(STRESS_ARCH_X86) &&		\
    defined(__linux__)
 	const bool has_msr = stress_cpu_x86_has_msr();
-#if defined(HAVE_NT_STORE128) &&	\
-    defined(HAVE_INT128_T)
-	const bool has_sse2 = stress_cpu_x86_has_sse2();
-#endif
 #endif
 
 	/* Allocate read only page */
@@ -406,8 +402,7 @@ retry:
 #if defined(HAVE_SIGSEGV_MISALIGNED128NT)
 			case 3:
 				/* Misaligned 128 non-temporal read */
-				if (has_sse2)
-					stress_sigsegv_misaligned128nt();
+				stress_sigsegv_misaligned128nt();
 				goto retry;
 #endif
 #if defined(HAVE_SIGSEGV_READ_TSC)

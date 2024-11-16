@@ -35,7 +35,6 @@
  *  128 bit non-temporal stores
  */
 #if defined(HAVE_INT128_T) &&				\
-    defined(HAVE_BUILTIN_SUPPORTS) &&			\
     defined(HAVE_BUILTIN_NONTEMPORAL_STORE)
 /* Clang non-temporal stores */
 static inline void ALWAYS_INLINE OPTIMIZE3 stress_nt_store128(__uint128_t *addr, register __uint128_t value)
@@ -72,8 +71,7 @@ static inline void ALWAYS_INLINE OPTIMIZE3 stress_nt_store128(__uint128_t *addr,
 /*
  *  64 bit non-temporal stores
  */
-#if defined(HAVE_BUILTIN_SUPPORTS) &&	\
-    defined(HAVE_BUILTIN_NONTEMPORAL_STORE)
+#if defined(HAVE_BUILTIN_NONTEMPORAL_STORE)
 /* Clang non-temporal stores */
 static inline void ALWAYS_INLINE OPTIMIZE3 stress_nt_store64(uint64_t *addr, register uint64_t value)
 {
@@ -105,8 +103,7 @@ static inline void ALWAYS_INLINE OPTIMIZE3 stress_nt_store64(uint64_t *addr, reg
 /*
  *  32 bit non-temporal stores
  */
-#if defined(HAVE_BUILTIN_SUPPORTS) &&			\
-    defined(HAVE_BUILTIN_NONTEMPORAL_STORE)
+#if defined(HAVE_BUILTIN_NONTEMPORAL_STORE)
 /* Clang non-temporal stores */
 static inline void ALWAYS_INLINE OPTIMIZE3 stress_nt_store32(uint32_t *addr, register uint32_t value)
 {
@@ -138,8 +135,7 @@ static inline void ALWAYS_INLINE OPTIMIZE3 stress_nt_store32(uint32_t *addr, reg
 /*
  *  double precision float non-temporal stores
  */
-#if defined(HAVE_BUILTIN_SUPPORTS) &&			\
-    defined(HAVE_BUILTIN_NONTEMPORAL_STORE)
+#if defined(HAVE_BUILTIN_NONTEMPORAL_STORE)
 /* Clang non-temporal stores */
 static inline void ALWAYS_INLINE OPTIMIZE3 stress_nt_store_double(double *addr, register double value)
 {
